@@ -69,7 +69,7 @@ void Bullet::_Update(const float& dt) {
                 continue;
             }
             if (!s->is_exploded() &&
-                s->getGlobalBounds().intersects(boundingBox)) {
+                s->getGlobalBounds().findIntersection(boundingBox)) {
                 //Explode the ship
                 s->Explode();
                 //warp bullet off-screen
