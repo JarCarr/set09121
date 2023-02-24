@@ -1,4 +1,6 @@
 #include "player.h"
+#include <iostream>
+
 using namespace sf;
 using namespace std;
 
@@ -20,6 +22,27 @@ void Player::Update(double dt) {
     if (Keyboard::isKeyPressed(Keyboard::S))
     {
         move(Vector2f(0, (dt * _speed)));
+    }
+
+    if (Mouse::isButtonPressed(Mouse::Left))
+    {
+        auto pos = Mouse::getPosition();
+        auto current = getPosition();
+
+        printf("%f", pos.x);
+
+        auto dif = pos;
+
+        dif.x -= current.x;
+        dif.y -= current.y;
+
+        auto length = sqrtf((dif.x * dif.x) + (dif.y * dif.y));
+
+        dif.x = dif.x / length;
+        dif.y = dif.y / length;
+
+        move(Vector2f((dif.x * dt * _speed), (dif.y * dt * _speed)));
+
     }
     
     Entity::Update(dt);

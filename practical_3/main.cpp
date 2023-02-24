@@ -6,8 +6,8 @@
 using namespace std;
 using namespace sf;
 
-const int gameWidth = 800;
-const int gameHeight = 600;
+const int gameWidth = 1920;
+const int gameHeight = 1080;
 unique_ptr<Player> player(new Player());
 
 void load() 
@@ -108,10 +108,16 @@ void Render(RenderWindow& window)
 
 int main() {
     RenderWindow window(VideoMode({ gameWidth, gameHeight }), "SpaceInvaders");
+    View view;
+    view.reset(FloatRect({ 100, 100 }, { 1920, 1080 }));
+    window.setView(view);
     load();
     while (window.isOpen()) {
         window.clear();
+        //view.setCenter(player.get()->getPosition());
         Update(window);
+        window.setView(view);
+        view.setCenter(player.get()->getPosition());
         Render(window);
         window.display();
     }

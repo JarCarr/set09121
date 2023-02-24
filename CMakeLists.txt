@@ -66,3 +66,10 @@ set_target_properties(3_TILES
     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
 )
 add_dependencies (3_TILES copy_resources)
+
+#### Pacman ####
+file(GLOB_RECURSE SOURCES practical_4/*.cpp practical_4/*.h)
+add_executable(PRACTICAL_4 ${SOURCES})
+target_include_directories(PRACTICAL_1 PRIVATE ${SFML_INCS})
+target_link_libraries(PRACTICAL_4 sfml-graphics)
+copy_sfml_dll(PRACTICAL_4)

@@ -7,6 +7,7 @@ private:
 
 public:
 	void Update(double dt) override;
+	//void Update(double dt, RenderWindow& window);
 	Player();
 	void Render(sf::RenderWindow& window) const override;
 };
